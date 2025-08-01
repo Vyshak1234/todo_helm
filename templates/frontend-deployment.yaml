@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "todo-helm-chart.frontendName" . }}
+  labels:
+    app: {{ include "todo-helm-chart.name" . }}
+    component: frontend
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "todo-helm-chart.name" . }}
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: {{ include "todo-helm-chart.name" . }}
+        component: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy | default "IfNotPresent" }}
+          ports:
+            - containerPort: {{ .Values.frontend.containerPort }}
+          env:
+          - name: REACT_APP_API_URL
+            value: "{{ .Values.frontend.env.REACT_APP_API_URL }}"
