@@ -2,45 +2,43 @@ replicaCount: 1
 
 backend:
   image:
-    repository: 533260833584.dkr.ecr.us-east-1.amazonaws.com/acceleterapptest
-    tag: alpha-backend-latest
+    repository: ""             # To be injected programmatically
+    tag: ""                    # To be injected programmatically
     pullPolicy: IfNotPresent
   containerPort: 5000
   env:
     PORT: "5000"
-    DB_HOST: "demodb.cod55klsl2aw.us-east-1.rds.amazonaws.com"
-    DB_USER: "adminuser"
-    DB_PASSWORD: "F4b9$-WWQw(D*yisJjE-?HZ4]koF"
-    DB_NAME: "todolist"
+    DB_HOST: ""                # To be injected securely
+    DB_USER: ""                # To be injected securely
+    DB_PASSWORD: ""            # To be injected securely
+    DB_NAME: ""                # To be injected securely
     DB_PORT: "5432"
   service:
-    type: LoadBalancer  # Expose backend via LoadBalancer for now
+    type: LoadBalancer
     port: 5000
 
 frontend:
   image:
-    repository: 533260833584.dkr.ecr.us-east-1.amazonaws.com/acceleterapptest
-    tag: alpha-frontend-latest
+    repository: ""             # To be injected programmatically
+    tag: ""                    # To be injected programmatically
     pullPolicy: IfNotPresent
   containerPort: 3000
   env:
-    # Will be updated with actual backend LoadBalancer URL after deployment
-    REACT_APP_API_URL: "http://af1de28e816434a6f893247bf8e9630b-726435256.us-east-1.elb.amazonaws.com:5000"
+    REACT_APP_API_URL: ""      # Will be injected post-backend LB availability
   service:
-    type: LoadBalancer  # Expose frontend via LoadBalancer
+    type: LoadBalancer
     port: 80
 
 serviceAccount:
   create: false
-  name: ""
+  name: ""                     # To be set if required
 
-# Disable ingress for now since we don't have a domain
 ingress:
   enabled: false
   className: ""
   annotations: {}
   hosts:
-    - host: todo.example.com
+    - host: ""
       paths:
         - path: /
           pathType: ImplementationSpecific
