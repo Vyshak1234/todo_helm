@@ -2,7 +2,7 @@ replicaCount: 1
 
 backend:
   image:
-    repository: 724563610454.dkr.ecr.us-east-1.amazonaws.com/acceleterapptest
+    repository: 533260833584.dkr.ecr.us-east-1.amazonaws.com/acceleterapptest
     tag: alpha-backend-latest
     pullPolicy: IfNotPresent
   containerPort: 5000
@@ -19,7 +19,7 @@ backend:
 
 frontend:
   image:
-    repository: 724563610454.dkr.ecr.us-east-1.amazonaws.com/acceleterapptest
+    repository: 533260833584.dkr.ecr.us-east-1.amazonaws.com/acceleterapptest
     tag: alpha-frontend-latest
     pullPolicy: IfNotPresent
   containerPort: 3000
