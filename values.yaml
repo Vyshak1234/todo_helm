@@ -2,8 +2,8 @@ replicaCount: 1
 
 backend:
   image:
-    repository: blitzvyshak/alpha-back898
-    tag: latest
+    repository: 724563610454.dkr.ecr.us-east-1.amazonaws.com/acceleterapptest
+    tag: alpha-backend-latest
     pullPolicy: IfNotPresent
   containerPort: 5000
   env:
@@ -19,8 +19,8 @@ backend:
 
 frontend:
   image:
-    repository: blitzvyshak/alpha-front456
-    tag: latest
+    repository: 724563610454.dkr.ecr.us-east-1.amazonaws.com/acceleterapptest
+    tag: alpha-frontend-latest
     pullPolicy: IfNotPresent
   containerPort: 3000
   env:
